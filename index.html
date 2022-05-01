@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <!-- <script src='main.js'></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <!-- <script src="js/three.js"></script> -->
+    <center id="display"></center>
+    <form>
+        <table>
+            <tr>
+                <td colspan="3"><b>Biến đổi affine</b> </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <div>Tịnh tiến</div>    
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <input type="number" id="input_x_value" placeholder="Độ dời trên Ox" style="height: 26px;">
+                    <input type="number" id="input_y_value" placeholder="Độ dời trên Oy" style="height: 26px;">
+                    <input type="number" id="input_z_value" placeholder="Độ dời trên Oz" style="height: 26px;">
+                    <input type="button" id="translate" class="button-8" value="Tịnh tiến">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <div>Tỉ lệ</div>    
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <input type="number" id="scale_x_factor" placeholder="Hệ số tỉ lệ x" style="height: 26px;">
+                    <input type="number" id="scale_y_factor" placeholder="Hệ số tỉ lệ y" style="height: 26px;">
+                    <input type="number" id="scale_z_factor" placeholder="Hệ số tỉ lệ z" style="height: 26px;">
+                    <input type="button" id="scale" class="button-8" value="Biến đổi tỉ lệ">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <div>Phép quay</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="number" id="input_degree_ox" placeholder="Nhập góc" style="height:26px">
+                    <input type="button" class="button-8" id="rotate_ox" value="Quay trên trục Ox">
+                </td>
+                <td>
+                    <input type="number" id="input_degree_oy" placeholder="Nhập góc" style="height:26px">
+                    <input type="button" class="button-8" id="rotate_oy" value="Quay trên trục Oy">
+                </td>
+                <td>
+                    <input type="number" id="input_degree_oz" placeholder="Nhập góc" style="height:26px">
+                    <input type="button" class="button-8" id="rotate_oz" value="Quay trên trục Oz">
+                </td>
+            </tr>
+            <td colspan="3">
+                <div>Phép quay quanh 1 trục bất kỳ</div>
+            </td>
+            <tr>
+                <td colspan="3">
+                    <input type="number" id="input_X_axis" placeholder="Tọa độ x vector trục" style="height: 26px;">
+                    <input type="number" id="input_Y_axis" placeholder="Tọa độ y vector trục" style="height: 26px;">
+                    <input type="number" id="input_Z_axis" placeholder="Tọa độ z vector trục" style="height: 26px;">
+                    <input type="number" id="input_angle" placeholder="Góc quay" style="height: 26px;">
+                    <input type="button" id="rotate_axis" class="button-8" value="Quay">
+                </td>
+            </tr>
+            
+        </table>
+    </form>
+    <script type="module" src="affine.js"></script>
+    </body>
+</html>
