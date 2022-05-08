@@ -3,15 +3,18 @@ import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/exampl
 
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+scene.fog = new THREE.FogExp2(0x000000,0.2);
 
 var renderer = new THREE.WebGLRenderer();
 renderer.physicallyCorrectLights = true;
 renderer.setSize( window.innerWidth*0.75, window.innerHeight*0.75);
+renderer.setClearColor(0x808080);
+renderer.shadowMap.enabled = true;
 document.getElementById("display").appendChild(renderer.domElement);
 
 
 var geometry = new THREE.BoxGeometry( 5, 5, 5 ); 
-var material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide, wireframe: true} );
+var material = new THREE.MeshPhongMaterial( {color: 0x89cff0, side: THREE.DoubleSide, wireframe: true} );
 var cube = new THREE.Mesh( geometry, material );
 const controls = new OrbitControls( camera, renderer.domElement );
 
@@ -24,6 +27,7 @@ var render = function()
     renderer.render(scene,camera);
 };
 render();
+
 
 
 $(document).ready(function(){
@@ -48,17 +52,6 @@ $(document).ready(function(){
         render();
     });
 
-    //Rotate axis
-    $("#rotate_axis").click(function(){
-        var X_axis = $("#input_X_axis").val();
-        var Y_axis = $("#input_Y_axis").val();
-        var Z_axis = $("#input_Z_axis").val();
-        var vetor = new THREE.Vector3(X_axis,Y_axis,Z_axis);
-        var angle = $("#input_angle").val();
-        cube.rotateOnWorldAxis(vetor,angle * Math.PI/180);
-        render();
-    })
-
     //Translate
     $("#translate").click(function(){
         var valuex = $("#input_x_value").val();
@@ -78,6 +71,49 @@ $(document).ready(function(){
         cube.scale.set(factorX,factorY,factorZ);
         render();
     });
+    // $('#rotation_arbitrary_axis
+    $('#rotate_axis').click(function(){
+        var X_axis = $("#input_X_axis").val();
+        var Y_axis = $("#input_Y_axis").val();
+        var Z_axis = $("#input_Z_axis").val();
+        var axis = new THREE.Vector3(X_axis,Y_axis,Z_axis);
+        var angle = $("#input_angle").val();
+        rotateAroundWorldAxis(cube, axis, angle);
+        render();
+    });
+
+
+    
+    $('#shear_object').click(function(){
+        var xy = $("#xy").val();
+        var xz = $("#xz").val();
+        var yx = $("#yx").val();
+        var yz = $("#yz").val();
+        var zx = $("#zx").val();
+        var zy = $("#zy").val();
+        var shear_matrix = new THREE.Matrix4();
+        shear_matrix.makeShear(xy, xz, yx, yz, zx, zy);
+        cube.applyMatrix4(shear_matrix);
+        render();  
+    });
+
+
+    var rotWorldMatrix;
+// Rotate an object around an arbitrary axis in world space       
+    function rotateAroundWorldAxis(object, axis, degree) {
+        var radians = degree * Math.PI/180;
+        rotWorldMatrix = new THREE.Matrix4();
+        rotWorldMatrix.makeRotationAxis(axis.normalize(), radians);
+
+    
+        rotWorldMatrix.multiply(object.matrix);                
+
+        object.matrix = rotWorldMatrix;
+
+        
+        object.rotation.setFromRotationMatrix(object.matrix)
+    }
+
 
 });
 

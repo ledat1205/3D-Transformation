@@ -13,11 +13,9 @@
 <body>
     <!-- <script src="js/three.js"></script> -->
     <center id="display"></center>
+    <center>
     <form>
         <table>
-            <tr>
-                <td colspan="3"><b>Biến đổi affine</b> </td>
-            </tr>
             <tr>
                 <td colspan="3">
                     <div>Tịnh tiến</div>    
@@ -75,9 +73,25 @@
                     <input type="button" id="rotate_axis" class="button-8" value="Quay">
                 </td>
             </tr>
-            
+            <tr>
+                <td colspan="3">
+                    <div>Phép biến dạng</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <input type="number" id="xy" placeholder="xy" style="height: 26px;">
+                    <input type="number" id="xz" placeholder="xz" style="height: 26px;">
+                    <input type="number" id="yx" placeholder="yx" style="height: 26px;">
+                    <input type="number" id="yz" placeholder="yz" style="height: 26px;">
+                    <input type="number" id="zx" placeholder="zx" style="height: 26px;">
+                    <input type="number" id="zy" placeholder="zy" style="height: 26px;">
+                    <input type="button" id="shear_object" class="button-8" value="Biến dạng">
+                </td>
+            </tr>
         </table>
     </form>
+</center>
     <script type="module" src="affine.js"></script>
     </body>
 </html>
