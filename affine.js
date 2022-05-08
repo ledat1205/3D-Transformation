@@ -3,18 +3,20 @@ import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/exampl
 
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-scene.fog = new THREE.FogExp2(0x000000,0.2);
 
 var renderer = new THREE.WebGLRenderer();
 renderer.physicallyCorrectLights = true;
 renderer.setSize( window.innerWidth*0.75, window.innerHeight*0.75);
-renderer.setClearColor(0x808080);
+renderer.setClearColor("#263238");
 renderer.shadowMap.enabled = true;
 document.getElementById("display").appendChild(renderer.domElement);
 
+var axes = new THREE.AxisHelper(150);
+scene.add(axes);
+
 
 var geometry = new THREE.BoxGeometry( 5, 5, 5 ); 
-var material = new THREE.MeshPhongMaterial( {color: 0x89cff0, side: THREE.DoubleSide, wireframe: true} );
+var material = new THREE.MeshBasicMaterial( {color: 0xffffff, side: THREE.DoubleSide, wireframe: true} );
 var cube = new THREE.Mesh( geometry, material );
 const controls = new OrbitControls( camera, renderer.domElement );
 
